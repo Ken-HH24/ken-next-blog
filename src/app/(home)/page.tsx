@@ -48,7 +48,7 @@ export default function HomePage() {
               delay: 0.8,
             }}
           >
-            <li className="leading-7">👨‍💻 I&apos;m working as a frontend engineer in Bytedance.</li>
+            <li className="leading-7">👨‍💻 I&apos;m a frontend developer.</li>
             <li className="leading-7">💡 I&apos;m currently working on projects with React.</li>
             <li className="leading-7">🌱 I&apos;m studying Rust and other frontend frameworks.</li>
           </motion.ul>
