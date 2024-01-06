@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import { motion } from 'framer-motion'
 import { FolderClosedIcon, HomeIcon, MoonIcon, PenSquareIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -56,7 +57,10 @@ const Navbar = () => {
                   <TooltipContent sideOffset={15}>{item.content}</TooltipContent>
                 </Tooltip>
                 {isActive && (
-                  <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-blue-500/0 via-blue-400/70 to-blue-400/0 dark:from-blue-400/0 dark:via-blue-400/40 dark:to-blue-400/0"></span>
+                  <motion.span
+                    layoutId="active"
+                    className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-blue-500/0 via-blue-400/70 to-blue-400/0 dark:from-blue-400/0 dark:via-blue-400/40 dark:to-blue-400/0"
+                  />
                 )}
               </li>
             )

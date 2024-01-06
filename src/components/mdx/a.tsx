@@ -19,7 +19,7 @@ export const A: React.FC<AProps> = (props) => {
     <a
       target="_blank"
       rel="noopener noreferrer"
-      className="cursor-pointer text-gray-500 hover:text-primary hover:!underline-offset-4 hover:!decoration-2 hover:!underline"
+      className="cursor-pointer text-gray-500 hover:text-primary hover:!decoration-2 !decoration-2 !underline-offset-4 !underline"
       {...props}
     />
   )

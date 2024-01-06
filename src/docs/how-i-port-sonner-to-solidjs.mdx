@@ -1,0 +1,51 @@
+---
+title: How I port sonner to solid.js
+date: 2023-01-05
+description: What I have learned from porting sonner to solid.js
+---
+
+[sonner](https://sonner.emilkowal.ski/) is awesome as it provides good experience to user. And I wonder why not build a sonner for solid.js. Although there has been a [solid-sonner](https://github.com/wobsoriano/solid-sonner), I try to build it on my own and learn something from it.
+
+## Start from the basic structure
+
+My first goal is to build a `toast()` API, when I call it, a toast will fade in and fade out after specific duration.
+
+[sonner](https://sonner.emilkowal.ski/) uses a pub-sub design pattern to manage the toasts state. But in solid.js, thanks to the fine grained reactivity, it's easier for me to connect the data with UI.
+
+I create a `ToastState` class which will use `createStore()` to get `[toasts, setToasts]` and manage the toast state change inside.
+
+```ts
+class ToastState {
+  toasts: ToastT[]
+  setToasts: SetStoreFunction<ToastT[]>
+
+  constructor() {
+    // use createStore to connect with UI
+    const [toasts, setToasts] = createStore<ToastT[]>([])
+    this.toasts = toasts
+    this.setToasts = setToasts
+  }
+
+  addToast = (toast: ToastT) => {
+    this.setToasts(
+      produce((toasts) => {
+        toasts.unshift(toast)
+      }),
+    )
+  }
+
+  updateToast = (id: string | number, data: Partial<ToastT>) => {
+    // ... ...
+  }
+
+  createToast = (data: ExternalToast & { message?: string | JSXElement }) => {
+    // ... ...
+  }
+
+  message = (message: string | JSXElement, data?: ExternalToast) => {
+    this.createToast({ ...data, message })
+  }
+
+  // ... ...
+}
+```

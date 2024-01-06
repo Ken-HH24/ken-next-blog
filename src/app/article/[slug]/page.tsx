@@ -2,7 +2,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 
 import { allPosts } from 'contentlayer/generated'
 
-import { A, Code } from '@/components/mdx'
+import { A } from '@/components/mdx'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -18,7 +18,7 @@ export default function Article({ params }: { params: { slug: string } }) {
   return (
     <div className="prose pb-8">
       <h1>{post?.title}</h1>
-      <MDXComponent components={{ code: Code, a: A }} />
+      <MDXComponent components={{ a: A }} />
     </div>
   )
 }
